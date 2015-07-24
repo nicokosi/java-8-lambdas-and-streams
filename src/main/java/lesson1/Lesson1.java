@@ -5,8 +5,10 @@
  */
 package lesson1;
 
+import static java.lang.System.out;
+import static java.util.Arrays.asList;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -19,16 +21,16 @@ public class Lesson1 {
    * Run the exercises to ensure we got the right answers
    */
   public void runExercises() {
-    System.out.println("JDK 8 Lambdas and Streams MOOC Lesson 1");
-    System.out.println("Running exercise 1 solution...");
+    out.println("JDK 8 Lambdas and Streams MOOC Lesson 1");
+    out.println("Running exercise 1 solution...");
     exercise1();
-    System.out.println("Running exercise 2 solution...");
+    out.println("Running exercise 2 solution...");
     exercise2();
-    System.out.println("Running exercise 3 solution...");
+    out.println("Running exercise 3 solution...");
     exercise3();
-    System.out.println("Running exercise 4 solution...");
+    out.println("Running exercise 4 solution...");
     exercise4();
-    System.out.println("Running exercise 5 solution...");
+    out.println("Running exercise 5 solution...");
     exercise5();
   }
 
@@ -45,12 +47,10 @@ public class Lesson1 {
    * of Strings provided.
    */
   private void exercise1() {
-    List<String> list = Arrays.asList(
-        "alpha", "bravo", "charlie", "delta", "echo", "foxtrot");
-
+    List<String> strings = asList("alpha", "bravo", "charlie", "delta", "echo", "foxtrot");
     StringBuilder stringBuilder = new StringBuilder();
-    list.forEach(s -> stringBuilder.append(s.charAt(0)));
-    System.out.println(stringBuilder.toString());
+    strings.forEach(s -> stringBuilder.append(s.charAt(0)));
+    out.println(stringBuilder.toString());
   }
 
   /**
@@ -59,8 +59,8 @@ public class Lesson1 {
    * Remove the words that have odd lengths from the list.
    */
   private void exercise2() {
-    List<String> list = new ArrayList<>(Arrays.asList(
-        "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
+    List<String> list = new ArrayList<>(asList(
+            "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
 
     /* YOUR CODE HERE */
   }
@@ -71,8 +71,8 @@ public class Lesson1 {
    * Replace every word in the list with its upper case equivalent.
    */
   private void exercise3() {
-    List<String> list = new ArrayList<>(Arrays.asList(
-        "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
+    List<String> list = new ArrayList<>(asList(
+            "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
 
     /* YOUR CODE HERE */
   }
@@ -98,7 +98,7 @@ public class Lesson1 {
    * Create a new thread that prints the numbers from the list.
    */
   private void exercise5() {
-    List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    List<Integer> list = asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     /* YOUR CODE HERE */
   }
