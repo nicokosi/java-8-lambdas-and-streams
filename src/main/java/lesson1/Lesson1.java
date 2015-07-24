@@ -73,8 +73,8 @@ public class Lesson1 {
   private void exercise3() {
     List<String> list = new ArrayList<>(asList(
             "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
-
-    /* YOUR CODE HERE */
+    list.replaceAll(String::toUpperCase);
+    out.println(list);
   }
 
   /**
