@@ -61,8 +61,8 @@ public class Lesson1 {
   private void exercise2() {
     List<String> list = new ArrayList<>(asList(
             "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
-
-    /* YOUR CODE HERE */
+    list.removeIf(s -> s.length() % 2 != 0);
+    out.println(list);
   }
 
   /**
