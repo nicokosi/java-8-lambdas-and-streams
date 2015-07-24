@@ -48,9 +48,9 @@ public class Lesson1 {
    */
   private void exercise1() {
     List<String> strings = asList("alpha", "bravo", "charlie", "delta", "echo", "foxtrot");
-    StringBuilder stringBuilder = new StringBuilder();
-    strings.forEach(s -> stringBuilder.append(s.charAt(0)));
-    out.println(stringBuilder.toString());
+    StringBuilder acc = new StringBuilder();
+    strings.forEach(s -> acc.append(s.charAt(0)));
+    out.println(acc.toString());
   }
 
   /**
@@ -89,7 +89,9 @@ public class Lesson1 {
     map.put("b", 2);
     map.put("a", 1);
 
-    /* YOUR CODE HERE */
+    StringBuilder acc = new StringBuilder();
+    map.forEach((k,v) -> acc.append(k + String.valueOf(v)));
+    out.println(acc.toString());
   }
 
   /**
