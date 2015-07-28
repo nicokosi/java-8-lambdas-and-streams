@@ -3,7 +3,7 @@
  *
  * JDK 8 MOOC Lesson 1 homework
  */
-package lesson1;
+package java_8_lambdas_and_streams;
 
 import static java.lang.System.out;
 import static java.util.Arrays.asList;
@@ -91,7 +91,7 @@ public class Lesson1 {
     map.put("a", 1);
 
     StringBuilder acc = new StringBuilder();
-    map.forEach((k,v) -> acc.append(k + String.valueOf(v)));
+    map.forEach((k, v) -> acc.append(k + String.valueOf(v)));
     out.println(acc.toString());
   }
 

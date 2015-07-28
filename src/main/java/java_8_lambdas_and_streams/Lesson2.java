@@ -3,7 +3,7 @@
  *
  * JDK 8 MOOC Lesson 2 homework
  */
-package lesson1;
+package java_8_lambdas_and_streams;
 
 import java.io.BufferedReader;
 import java.io.IOException;
