@@ -12,8 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Speakjava (simon.ritter@oracle.com)
@@ -54,7 +52,9 @@ public class Lesson2 {
     List<String> list = Arrays.asList(
         "The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
-    /* YOUR CODE HERE */
+    list.stream()
+            .map(String::toLowerCase)
+            .forEach(System.out::println);
   }
 
   /**
