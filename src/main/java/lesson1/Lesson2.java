@@ -67,7 +67,10 @@ public class Lesson2 {
     List<String> list = Arrays.asList(
         "The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
-    /* YOUR CODE HERE */
+    list.stream()
+            .filter(s -> s.length() % 2 != 0)
+            .map(String::toLowerCase)
+            .forEach(System.out::println);
   }
 
   /**
