@@ -83,7 +83,11 @@ public class Lesson2 {
     List<String> list = Arrays.asList(
         "The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog");
 
-    /* YOUR CODE HERE */
+    list.stream()
+            .skip(1)
+            .limit(3)
+            .reduce((s1, s2) -> s1.concat("-").concat(s2))
+            .ifPresent(System.out::println);
   }
 
   /**
