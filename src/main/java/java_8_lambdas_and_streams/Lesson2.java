@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * @author Speakjava (simon.ritter@oracle.com)
@@ -108,8 +109,11 @@ public class Lesson2 {
    */
   private void exercise5() throws IOException {
     try (BufferedReader reader = Files.newBufferedReader(
-        Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
-      /* YOUR CODE HERE */
+        Paths.get("src/main/java/java_8_lambdas_and_streams/SonnetI.txt"), StandardCharsets.UTF_8)) {
+        reader.lines()
+                .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+                .distinct()
+                .forEach(System.out::println);
     }
   }
   
