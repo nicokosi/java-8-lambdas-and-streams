@@ -139,8 +139,13 @@ public class Lesson2 {
    */
   private void exercise7() throws IOException {
     try (BufferedReader reader = Files.newBufferedReader(
-        Paths.get("SonnetI.txt"), StandardCharsets.UTF_8)) {
-      /* YOUR CODE HERE */
+        Paths.get("src/main/java/java_8_lambdas_and_streams/SonnetI.txt"), StandardCharsets.UTF_8)) {
+            reader.lines()
+                    .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+                    .map(String::toLowerCase)
+                    .distinct()
+                    .sorted((s1, s2) -> s1.length() - s2.length())
+                    .forEachOrdered(System.out::println);
     }
   }
 
