@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Class to generate a list of random words
@@ -27,9 +28,9 @@ public class RandomWords {
    * @throws IOException If the source words file cannot be read
    */
   public RandomWords() throws IOException {   
-    try (BufferedReader reader = Files.newBufferedReader(Paths.get("words"))) {
-      sourceWords = null;    // YOUR CODE HERE
-      
+    try (BufferedReader reader = Files.newBufferedReader(Paths.get("src/main/java/java_8_lambdas_and_streams/words"))) {
+      sourceWords = reader.lines()
+              .collect(Collectors.toList());
       System.out.println("Loaded " + sourceWords.size() + " words");
     }
   }
@@ -42,8 +43,10 @@ public class RandomWords {
    */
   public List<String> createList(int listSize) {
     Random rand = new Random();
-    List<String> wordList = null; // YOUR CODE HERE
-
+    List<String> wordList = rand.ints(0, sourceWords.size() - 1)
+            .limit(listSize)
+            .mapToObj(i -> sourceWords.get(i))
+            .collect(Collectors.toList());
     return wordList;
   }
 
