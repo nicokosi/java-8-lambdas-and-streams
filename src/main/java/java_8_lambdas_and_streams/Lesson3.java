@@ -5,10 +5,12 @@
  */
 package java_8_lambdas_and_streams;
 
+import static java.util.stream.Collectors.toList;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Simon Ritter (@speakjava)
@@ -67,21 +69,17 @@ public class Lesson3 {
   static int[][] computeLevenshtein(List<String> wordList, boolean parallel) {
     final int LIST_SIZE = wordList.size();
     int[][] distancesAsArray = new int[LIST_SIZE][LIST_SIZE];
-    if (parallel) {
-      wordList.parallelStream()
-              .flatMap(w1 -> wordList.parallelStream().map(w2 -> new Pair<>(w1, w2)))
+    streamOf(wordList, parallel)
+              .flatMap(w1 -> streamOf(wordList, parallel).map(w2 -> new Pair<>(w1, w2)))
               .map(p -> Levenshtein.lev(p.first, p.second))
-              .collect(Collectors.toList());
-    } else {
-      wordList.stream()
-              .flatMap(w1 -> wordList.stream().map(w2 -> new Pair<>(w1, w2)))
-              .map(p -> Levenshtein.lev(p.first, p.second))
-              .collect(Collectors.toList());
-    }
-    // FIXME
-    return distancesAsArray;
+              .collect(toList());
+    return distancesAsArray; // FIXME array is not set
   }
-  
+
+  private static Stream<String> streamOf(final List<String> list, final boolean parallel) {
+    return parallel ? list.parallelStream() : list.stream();
+  }
+
   /**
    * Process a list of random strings and return a modified list
    * 
