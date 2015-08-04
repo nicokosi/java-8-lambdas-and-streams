@@ -88,9 +88,11 @@ public class Lesson3 {
    * @return The list processed in whatever way you want
    */
   static List<String> processWords(List<String> wordList, boolean parallel) {
-    // YOUR CODE HERE
-    
-    return null;
+    return streamOf(wordList, parallel)
+            //.distinct()
+            .map(String::toUpperCase)
+            .map(String::format)
+            .collect(toList());
   }
 
   /**
@@ -102,12 +104,14 @@ public class Lesson3 {
   public static void main(String[] args) throws IOException {
     RandomWords fullWordList = new RandomWords();
     List<String> wordList = fullWordList.createList(1000);
+//    List<String> wordList = fullWordList.createList(50); // threshold below which sequential will give a faster answer than parallel
 
-    measure("Sequential", () -> computeLevenshtein(wordList, false));
-    measure("Parallel", () -> computeLevenshtein(wordList, true));
+
+//    measure("Sequential", () -> computeLevenshtein(wordList, false));
+//    measure("Parallel", () -> computeLevenshtein(wordList, true));
     
-//    measure("Sequential", () -> processWords(wordList, false));
-//    measure("Parallel", () -> processWords(wordList, true));
+    measure("Sequential", () -> processWords(wordList, false));
+    measure("Parallel", () -> processWords(wordList, true));
   }
 }
 class Pair<T> {
