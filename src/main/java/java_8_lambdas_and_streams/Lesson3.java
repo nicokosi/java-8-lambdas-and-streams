@@ -8,6 +8,7 @@ package java_8_lambdas_and_streams;
 import java.io.IOException;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * @author Simon Ritter (@speakjava)
@@ -65,11 +66,20 @@ public class Lesson3 {
    */
   static int[][] computeLevenshtein(List<String> wordList, boolean parallel) {
     final int LIST_SIZE = wordList.size();
-    int[][] distances = new int[LIST_SIZE][LIST_SIZE];
-    
-    // YOUR CODE HERE
-    
-    return distances;
+    int[][] distancesAsArray = new int[LIST_SIZE][LIST_SIZE];
+    if (parallel) {
+      wordList.parallelStream()
+              .flatMap(w1 -> wordList.parallelStream().map(w2 -> new Pair<>(w1, w2)))
+              .map(p -> Levenshtein.lev(p.first, p.second))
+              .collect(Collectors.toList());
+    } else {
+      wordList.stream()
+              .flatMap(w1 -> wordList.stream().map(w2 -> new Pair<>(w1, w2)))
+              .map(p -> Levenshtein.lev(p.first, p.second))
+              .collect(Collectors.toList());
+    }
+    // FIXME
+    return distancesAsArray;
   }
   
   /**
@@ -100,5 +110,14 @@ public class Lesson3 {
     
 //    measure("Sequential", () -> processWords(wordList, false));
 //    measure("Parallel", () -> processWords(wordList, true));
+  }
+}
+class Pair<T> {
+  protected T first;
+  protected T second;
+
+  public Pair(T first, T second) {
+    this.first = first;
+    this.second = second;
   }
 }
